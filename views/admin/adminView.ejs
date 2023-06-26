@@ -1,0 +1,52 @@
+<%- include('./templates/header.ejs') %>
+<%- include('./templates/nav.ejs') %>
+
+    <main>
+
+            <% if(movies.length> 0) {%>
+
+                <h1 class="centerText">My Movies</h1>
+
+                <section class="favoutie-movies gridContainerMax-2c">
+
+                    <% movies.forEach(element=> {%>
+
+                        <article class="movie-card centerText gridContainerMax-2c maxWidthMedium">
+
+                            <div>
+                                <img src=<%=`/assets/uploads/${element.Poster}`%> />
+                            <button><a href="/admin/movies/edit-form/<%= element._id %>">Editar</a></button>
+                                <button><a href="/admin/movies/remove-movie/<%= element._id %>">Eliminar</a></button>
+                            </div>
+
+                            <div>
+                                <h1>
+                                    <%=element.Title %>
+                                </h1>
+
+                                <div class="movie-facts">
+
+                                    <span>Year: <%=element.Year%>, </span><span>Duration: <%= element.Runtime %>,</span>
+                                    <span>Genre: <%= element.Genre %> </span>
+
+                                </div>
+
+                                <h4>Director:</h4>
+
+                                <p>
+                                    <%= element.Director %>
+                                </p>
+
+                            </div>
+                        </article>
+
+                        <% }); %>
+                            <% } else { %>
+
+                                <p>No hay ninguna película</p>
+
+                                <% } %>
+
+    </main>
+    
+<%- include('./templates/footer.ejs') %>
